@@ -3,7 +3,7 @@
 
 main(){
 
-  printf("Prueba");
+  printf("");
   scanf(",");
   printf("");
     
