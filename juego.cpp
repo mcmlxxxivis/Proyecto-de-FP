@@ -3,8 +3,8 @@
 
 main(){
 
-  printf("");
-  scanf(",);j
+  printf("Prueba");
+  scanf(",");
   printf("");
     
 }
