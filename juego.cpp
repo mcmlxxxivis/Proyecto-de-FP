@@ -6,4 +6,5 @@ main(){
   printf("");
   scanf(",);j
   printf("");
+    
 }
