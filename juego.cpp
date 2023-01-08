@@ -4,5 +4,6 @@
 main(){
 
   printf("");
-  scanf(",&a);
+  scanf(",);j
+  printf("");
 }
