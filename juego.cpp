@@ -1,7 +1,5 @@
 #include<stdlib.h>
 #include<stdio.h>
-#include<stdio.h>
-#include<stdlib.h>
 #include<string.h>
 
 FILE*ap;
@@ -18,9 +16,8 @@ void iniciar();
 int buscar(char N[],char C[]);
 
 main(){
-	
 	int op;
-	
+	printf("Bienvenido a Cien mexicanos dijieron")
 	printf("1. Registrar\n");
 	printf("2. Iniciar Sesion\n");
 	scanf("%d",&op);
