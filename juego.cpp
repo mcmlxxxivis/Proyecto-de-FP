@@ -4,6 +4,7 @@
 #include<time.h>
 
 FILE*ap;
+FILE*ap2;
 
 struct Usuarios{
 	char nombre[20];
@@ -18,8 +19,11 @@ int buscar(char N[],char C[]);
 void aleatorios(int *nA);
 void elegir(int op);
 void preguntas(int nA);
+void guardarPn();
+void consultar();
 
 int PuntosFn=0;//Variables globales
+char nom[20],con[20];
 
 main(){
 	system("title 100 mexicanos dijeron");
@@ -29,9 +33,9 @@ main(){
         printf("1. Registrar\n");
         printf("2. Iniciar Sesion\n");
         printf("3. Salir del menu inicial\n");
-        printf("%cQu%c opci%cn quieres?\n ",168,130,162);
+        printf("4. Consultar puntajes generales\n");
+        printf("%cQu%c opci%cn quieres? ",168,130,162);
         scanf("%d",&op);
-	system("cls");
         switch(op){
             case 1: 
                 registrar();
@@ -46,6 +50,9 @@ main(){
             case 3:
                 bucle=1;
             break;
+            case 4:
+                consultar();
+                break;
             default:
                 printf("Opci%cn no valida\n",162);
             break;
@@ -57,10 +64,13 @@ main(){
 	nAleatorio=(int*)malloc(9*sizeof(int*));//memoria para 9 numeros
 	aleatorios(nAleatorio);
 	for(int i=0; i<4; i++){//Ronda de preguntas
-		printf("Ronda %d\n",i+1);
+		printf("\t\tRonda %d\n\n",i+1);
 		preguntas(nAleatorio[i]);
 	}
 	free(nAleatorio);
+    printf("Tu puntaje final es %d",PuntosFn);
+    guardarPn();
+    getchar();
 }
 
 void registrar(){
@@ -68,7 +78,7 @@ void registrar(){
     char nom[20];
 	char con[20];
 	int j=0,g=0,p=0,pun=0;
-	
+	system("cls");
 	printf("Dame tu nombre: ");
 	fflush(stdin);
 	gets(nom);
@@ -90,8 +100,7 @@ int buscar(char N[],char C[]){
 	
 		ap=fopen("Usuarios.txt","r");
 		int i=0;
-		while(feof(ap)==0)
-		{
+		while(feof(ap)==0){
 			fscanf(ap,"%s",U[i].nombre);
 			fscanf(ap,"%s",U[i].contra);
 			fscanf(ap,"%d",&U[i].jj);
@@ -112,8 +121,7 @@ int buscar(char N[],char C[]){
 
 int iniciar(){
 	system("title Inicio de sesion");
-    char nom[20],Reg;
-	char con[20];
+    char Reg;
 	int j=0,g=0,p=0,pun=0,Desbloqueo=0,Val;
 	do{
         system("cls");
@@ -710,4 +718,34 @@ void preguntas(int nA ){
             system("cls");
 		break;
     }
+}
+
+void guardarPn(){
+	int j=0,g=0,p=0,pun=PuntosFn,i=0;
+	system("cls");
+	ap=fopen("AuxUsuarios.txt","w");
+    fprintf(ap,"\n");
+    fprintf(ap,"%s %s %d %d %d %d",nom,con,j,g,p,pun);
+    fclose(ap);
+    
+    ap=fopen("AuxUsuarios.txt","r");
+    ap2=fopen("Usuarios.txt","a");
+    while(!feof(ap)){
+    	fscanf(ap, "%s %s %d %d %d %d",nom,con,&j,&g,&p,&pun);
+    	fprintf(ap2,"\n%s %s %d %d %d %d \n",nom,con,j,g,p,pun);
+	}
+    fclose(ap);
+    fclose(ap2);
+}
+void consultar(){
+    char cadena[100];
+    system("cls");
+    ap=fopen("Usuarios.txt","r");
+    while(feof(ap)==0){
+        fgets(cadena,100,ap);
+        printf("\n%s",cadena);
+    }
+    printf("\n\n");
+    fclose(ap);
+    system("pause");
 }
