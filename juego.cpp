@@ -29,8 +29,9 @@ main(){
         printf("1. Registrar\n");
         printf("2. Iniciar Sesion\n");
         printf("3. Salir del menu inicial\n");
-        printf("%cQu%c opci%cn quieres? ",168,130,162);
+        printf("%cQu%c opci%cn quieres?\n ",168,130,162);
         scanf("%d",&op);
+	system("cls");
         switch(op){
             case 1: 
                 registrar();
